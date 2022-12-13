@@ -32,7 +32,7 @@ class AjaxController extends Controller
         $data = $exist->isEmpty();
 
         if($exist->isEmpty()){
-           
+
             $user=User::create([
                 'name' => $request->email,
                 'email' => $request->email,
@@ -50,8 +50,8 @@ class AjaxController extends Controller
         //$user = VendorUsers::where('user_id',$userId)->first();
 
         $user = User::where('email',$request->email)->first();
-        
-    
+
+
         /* Auth::loginUsingId($user->id, true); */
        Auth::login($user,true);
        $data = array();
@@ -60,7 +60,7 @@ class AjaxController extends Controller
             $data['access'] = true;
        }
 
-       
+
         return $data;
     }
 
@@ -74,7 +74,7 @@ class AjaxController extends Controller
         } catch (\Exception $e) {
               $this->sendError($e->getMessage(), 401);
         }
-        
+
         $data1 = array();
         if(!Auth::check()){
           $data1['logoutuser'] = true;
